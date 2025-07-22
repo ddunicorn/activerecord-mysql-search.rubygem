@@ -1,0 +1,53 @@
+name: Checks
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+
+jobs:
+  build:
+    strategy:
+      fail-fast: true
+      matrix:
+        os:
+          - ubuntu-latest
+        ruby:
+          - '3.1.7'
+          - '3.2.8'
+          - '3.3.8'
+        gemfile:
+          - rails_7.0.gemfile
+          - rails_7.1.gemfile
+          - rails_7.2.gemfile
+          - rails_8.0.gemfile
+        exclude:
+          - ruby: '3.1.7'
+            gemfile: rails_8.0.gemfile
+    runs-on: ${{ matrix.os }}
+
+    env:
+      BUNDLE_GEMFILE: gemfiles/${{ matrix.gemfile }}
+      DB_DATABASE: mysql_search_test
+      DB_USER: root
+      DB_PASSWORD: root
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ matrix.ruby }}
+        bundler-cache: true
+    - name: Setup project
+      run: bundle install
+    - name: Set up MySQL
+      run: |
+        sudo /etc/init.d/mysql start
+        mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE }};' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
+    - name: Copy database.yml
+      run: cp spec/database.yml.example spec/database.yml
+    - name: Run the default task
+      run: bundle exec rake

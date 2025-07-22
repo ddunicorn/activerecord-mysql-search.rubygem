@@ -1,0 +1,22 @@
+plugins:
+  - rubocop-rspec
+  - rubocop-rake
+  - rubocop-rails
+
+AllCops:
+  TargetRubyVersion: 3.1
+  NewCops: enable
+
+Layout/LineLength:
+  Max: 120
+
+RSpec/SpecFilePathFormat:
+  CustomTransform:
+    MySQL: mysql
+
+Rails/ApplicationJob:
+  Enabled: false
+
+Naming/FileName:
+  Exclude:
+    - 'lib/activerecord-mysql-search.rb'

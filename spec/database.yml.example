@@ -1,0 +1,7 @@
+test:
+  adapter: mysql2
+  username: root
+  password: root
+  host: 0.0.0.0
+  port: 3306
+  database: mysql_search_test
