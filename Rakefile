@@ -2,8 +2,8 @@
 
 require 'bundler/gem_tasks'
 
-load 'tasks/actualize.rake'
-load 'tasks/reindex.rake'
+load 'lib/tasks/actualize.rake'
+load 'lib/tasks/reindex.rake'
 
 require 'rspec/core/rake_task'
 
