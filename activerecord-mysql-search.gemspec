@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name = 'activerecord-mysql-search'
-  spec.version = '0.1.0'
+  spec.version = '0.1.1'
   spec.authors = ['Daydream Unicorn GmbH & Co. KG']
   spec.email = ['hello@daydreamunicorn.com']
 
