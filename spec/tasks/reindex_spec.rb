@@ -5,7 +5,7 @@ RSpec.describe 'rake mysql:search:reindex' do # rubocop:disable RSpec/DescribeCl
   let(:task) { Rake::Task[task_name] }
 
   before do
-    Rake.application.rake_require('tasks/reindex')
+    Rake.application.rake_require('tasks/mysql/search/reindex')
     Rake::Task.define_task(:environment)
   end
 

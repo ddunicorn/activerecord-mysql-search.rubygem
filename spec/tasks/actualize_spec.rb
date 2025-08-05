@@ -5,7 +5,7 @@ RSpec.describe 'rake mysql:search:actualize' do # rubocop:disable RSpec/Describe
   let(:task) { Rake::Task[task_name] }
 
   before do
-    Rake.application.rake_require('tasks/actualize')
+    Rake.application.rake_require('tasks/mysql/search/actualize')
     Rake::Task.define_task(:environment)
   end
 

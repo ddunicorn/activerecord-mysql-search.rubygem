@@ -7,8 +7,8 @@ module MySQL
       railtie_name :mysql_search
 
       rake_tasks do
-        path = File.expand_path(__dir__)
-        Dir.glob("#{path}/../../tasks/**/*.rake").each { |f| load f }
+        load 'tasks/mysql/search/actualize.rake'
+        load 'tasks/mysql/search/reindex.rake'
       end
 
       generators do
