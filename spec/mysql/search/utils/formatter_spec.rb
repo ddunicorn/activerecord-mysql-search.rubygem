@@ -18,7 +18,7 @@ RSpec.describe MySQL::Search::Utils::Formatter do
     context 'when required format is :text' do
       let(:format_name) { :text }
 
-      it { is_expected.to eq('Test String with Special Symbols') }
+      it { is_expected.to eq('Test String $ with Special Symbols!') }
     end
 
     context 'when required format is :calendar_week' do
@@ -35,6 +35,20 @@ RSpec.describe MySQL::Search::Utils::Formatter do
       it 'returns datetime as date' do
         expect(formatter.format).to eq('01.01.2020')
       end
+    end
+  end
+
+  describe '.register' do
+    before do
+      described_class.register(:custom_format) do |val|
+        val.to_s.upcase
+      end
+    end
+
+    let(:format_name) { :custom_format }
+
+    it 'registers a new format method' do
+      expect(formatter.format).to eq('TEST STRING $ WITH SPECIAL SYMBOLS!')
     end
   end
 end

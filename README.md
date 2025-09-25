@@ -96,7 +96,16 @@ end
 - **`:calendar_week`** - Extracts calendar week information (e.g., "week 42", format is configurable)
 - **`Proc`** - Custom extraction logic with access to the attribute value
 - **Nested Associations** - Supports nested associations
-- **Your formatters**. Check the [source code](lib/mysql/search/utils/formatter.rb) for more details.
+
+#### Registering new formatters
+
+You can register new formatters using the `register_format` method:
+
+```ruby
+MySQL::Search.configure do |config|
+  config.register_format(:upcase) { |value| value.to_s.upcase }
+end
+```
 
 ### Step 6: Index Existing Data
 
