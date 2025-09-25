@@ -89,7 +89,7 @@ class ArticleSource < MySQL::Search::Source
 end
 ```
 
-**Available Formatters **
+#### Available Formatters
 
 - **`:text`** - Extracts text content from the field
 - **`:date`** - Formats dates using the configured date format (e.g., "12.01.2025", format is configurable)
