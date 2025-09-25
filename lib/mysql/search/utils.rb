@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require_relative 'utils/formatter'
-require_relative 'utils/text_normalizer'
 require_relative 'utils/duration_parser'
 
 module MySQL

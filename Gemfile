@@ -19,3 +19,5 @@ gem 'rubocop'
 gem 'rubocop-rails'
 gem 'rubocop-rake'
 gem 'rubocop-rspec'
+
+gem 'ruby-lsp'

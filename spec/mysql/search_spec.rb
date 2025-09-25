@@ -7,6 +7,18 @@ RSpec.describe MySQL::Search do
     it { is_expected.to respond_to(:search_index_class_name) }
     it { is_expected.to respond_to(:sources_path) }
     it { is_expected.to respond_to(:configure) }
+
+    it 'yields self in configure block' do
+      described_class.configure do |config|
+        expect(config).to eq(described_class)
+      end
+    end
+
+    it 'allows registering custom formatters' do
+      described_class.register_format(:upcase, &:upcase)
+
+      expect(MySQL::Search::Utils::Formatter.new('test', :upcase).format).to eq('TEST')
+    end
   end
 
   describe 'integration' do

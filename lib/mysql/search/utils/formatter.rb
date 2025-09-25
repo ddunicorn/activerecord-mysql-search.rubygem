@@ -7,6 +7,12 @@ module MySQL
       class Formatter
         attr_reader :value, :formatter
 
+        def self.register(name, &block)
+          define_method(name) do
+            block.call(value)
+          end
+        end
+
         def initialize(value, formatter)
           if formatter.instance_of?(Proc)
             @value = formatter.call(value)
@@ -20,13 +26,13 @@ module MySQL
         end
 
         def format
-          formatter ? send(formatter) : value
+          (formatter ? send(formatter) : value).to_s.strip
         end
 
         private
 
         def text
-          TextNormalizer.normalize(value.to_s)
+          value
         end
 
         def calendar_week

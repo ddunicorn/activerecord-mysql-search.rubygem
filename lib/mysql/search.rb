@@ -27,6 +27,10 @@ module MySQL
     mattr_accessor :calendar_week_format, default: 'week %V'
     mattr_accessor :date_format, default: '%d.%m.%Y'
 
+    def register_format(name, &)
+      Utils::Formatter.register(name, &)
+    end
+
     def search_index_class
       @search_index_class ||= search_index_class_name.constantize
     end

@@ -59,7 +59,6 @@ module MySQL
         private
 
         def search_expression(search_term, search_column)
-          search_term = ::MySQL::Search::Utils::TextNormalizer.normalize(search_term)
           search_indices = ::MySQL::Search.search_index_class_name.constantize.arel_table
           search_columns = Array.wrap(search_column).map { |col| search_indices[col] }
 
