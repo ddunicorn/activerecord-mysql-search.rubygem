@@ -18,6 +18,7 @@ module MySQL
     # Runtime configuration
     mattr_accessor :automatic_update, default: true
     mattr_accessor :update_asyncronously, default: false
+    mattr_accessor :autoload_sources, default: true
 
     # Search Index & Sources
     mattr_accessor :search_index_class_name, default: 'SearchIndex'
@@ -36,10 +37,11 @@ module MySQL
     end
 
     def source_classes
-      @source_classes ||= Dir.glob("#{sources_path}/**/*.rb").filter_map do |file|
+      Dir.glob("#{sources_path}/**/*.rb").filter_map do |file|
         file.sub("#{sources_path}/", '').sub('.rb', '').camelize.safe_constantize
       end
     end
+    alias load_source_classes! source_classes
 
     def configure
       yield self

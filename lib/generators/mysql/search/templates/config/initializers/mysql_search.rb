@@ -2,21 +2,31 @@
 
 # Configure MySQL::Search settings
 MySQL::Search.configure do |config|
-  # Defines the name of the search index activerecord model.
-  config.search_index_class_name = 'SearchIndex'
+  # Model class name for search indices (default: 'SearchIndex')
+  # config.search_index_class_name = 'SearchIndex'
 
-  # Location of the search sources folder
-  config.sources_path = 'app/search_sources'
+  # Path to search source classes (default: 'app/search_sources')
+  # config.sources_path = 'app/search_sources'
 
-  # Enables the search index to be automatically updated via source and nested models callbacks "on save"
-  config.automatic_update = true
+  # Automatically load source classes on Rails startup (default: true)
+  # Loading of source classes assigns callbacks to the target models
+  # to keep the search index updated. In case of loading issue you can load
+  # the source classes manually with `MySQL::Search.load_source_classes!`
+  # and disable automatic initialization.
+  # config.autoload_sources = true
 
-  # Use ActiveJob to update the search index in the background
-  config.update_asyncronously = true
+  # Automatically update search index when models change (default: true)
+  # config.automatic_update = true
 
-  # Defines the format for `calendar_week` formatter.
-  config.calendar_week_format = 'week %W'
+  # Process index updates asynchronously (default: false)
+  # config.update_asyncronously = false
 
-  # Defines the format for `date` formater.
-  config.date_format = '%d.%m.%Y'
+  # Date format for date fields (default: '%d.%m.%Y')
+  # config.date_format = '%d.%m.%Y'
+
+  # Calendar week format (default: 'week %V')
+  # config.calendar_week_format = 'week %V'
+
+  # Register custom formatters
+  # config.register_format(:upcase) { |value| value.to_s.upcase }
 end
