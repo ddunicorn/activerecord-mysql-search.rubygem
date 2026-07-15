@@ -41,7 +41,11 @@ module MySQL
         file.sub("#{sources_path}/", '').sub('.rb', '').camelize.safe_constantize
       end
     end
-    alias load_source_classes! source_classes
+
+    # Keep a separate API entrypoint used by the Railtie initialization hook.
+    def load_source_classes!
+      source_classes
+    end
 
     def configure
       yield self

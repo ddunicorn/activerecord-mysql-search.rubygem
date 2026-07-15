@@ -15,11 +15,7 @@ module ActiveRecord
         add_column table_name, :updated_at, 'DATETIME ON UPDATE CURRENT_TIMESTAMP', **options
       end
     end
-  end
-end
 
-module ActiveRecord
-  module ConnectionAdapters
     # Overrides the `timestamps` method in `TableDefinition` to use MySQL's `DATETIME ON UPDATE CURRENT_TIMESTAMP`
     # for the `updated_at` column.
     # This allows the `updated_at` column to automatically update its value whenever the row is updated.

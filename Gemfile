@@ -16,6 +16,7 @@ gem 'database_cleaner-active_record'
 gem 'rspec'
 
 gem 'rubocop'
+gem 'rubocop-performance'
 gem 'rubocop-rails'
 gem 'rubocop-rake'
 gem 'rubocop-rspec'
