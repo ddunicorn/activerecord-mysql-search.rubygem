@@ -1,7 +1,12 @@
 ## [Unreleased]
 
+## [0.2.1] - 2026-07-15
+
 - Adds automatic loading of source classes on Rails startup via new `autoload_sources` configuration option (default: true)
-- Adds `load_source_classes!` alias method for manually loading source classes
+- Adds `load_source_classes!` method for manually loading source classes
+- Fixes source actualization query composition to preserve base STI scope while appending OR conditions for associated updates
+- Adds regression coverage for STI subclass source relations with associated updates
+- Extracts Arel `AGAINST` integration into a dedicated extension file
 
 ## [0.2.0] - 2025-09-25
 
