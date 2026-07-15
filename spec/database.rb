@@ -23,4 +23,17 @@ ActiveRecord::Migration.suppress_messages do
 
     t.index :content, type: :fulltext
   end
+
+  ActiveRecord::Migration.create_table :authors, force: true do |t|
+    t.string :name, null: false
+
+    t.timestamps
+  end
+
+  ActiveRecord::Migration.create_table :employees, force: true do |t|
+    t.string :type, null: false
+    t.references :author
+
+    t.timestamps
+  end
 end

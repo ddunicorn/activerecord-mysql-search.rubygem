@@ -7,9 +7,9 @@ module MySQL
       class Formatter
         attr_reader :value, :formatter
 
-        def self.register(name, &block)
+        def self.register(name, &)
           define_method(name) do
-            block.call(value)
+            yield(value)
           end
         end
 

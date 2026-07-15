@@ -16,16 +16,22 @@ jobs:
           - ubuntu-latest
         ruby:
           - '3.1.7'
-          - '3.2.8'
-          - '3.3.8'
+          - '3.2.11'
+          - '3.3.11'
+          - '3.4.10'
         gemfile:
           - rails_7.0.gemfile
           - rails_7.1.gemfile
           - rails_7.2.gemfile
           - rails_8.0.gemfile
+          - rails_8.1.gemfile
         exclude:
           - ruby: '3.1.7'
             gemfile: rails_8.0.gemfile
+          - ruby: '3.1.7'
+            gemfile: rails_8.1.gemfile
+          - ruby: '3.4.10'
+            gemfile: rails_7.0.gemfile
     runs-on: ${{ matrix.os }}
 
     env:
