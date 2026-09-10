@@ -7,6 +7,7 @@ require_relative 'search/searchable'
 require_relative 'search/source'
 require_relative 'search/queries/updated_sources_query'
 require_relative 'search/queries/full_text_search_query'
+require_relative 'search/queries/boolean_full_text_search_query'
 require_relative 'search/updater'
 require_relative 'search/utils'
 

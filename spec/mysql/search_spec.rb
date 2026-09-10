@@ -55,5 +55,15 @@ RSpec.describe MySQL::Search do
 
       expect(results).to include(news_digest)
     end
+
+    it 'returns only matching News Digests for boolean full text search operators', :aggregate_failures do
+      matching_news_digest = NewsDigest.create!(title: 'Requiredterm Digest', summary: 'Summary')
+      excluded_news_digest = NewsDigest.create!(title: 'Requiredterm Excludedterm Digest', summary: 'Summary')
+
+      results = NewsDigest.boolean_full_text_search('+requiredterm -excludedterm')
+
+      expect(results).to include(matching_news_digest)
+      expect(results).not_to include(excluded_news_digest)
+    end
   end
 end
