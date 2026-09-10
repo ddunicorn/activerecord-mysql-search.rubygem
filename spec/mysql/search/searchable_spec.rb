@@ -13,5 +13,9 @@ RSpec.describe MySQL::Search::Searchable do
     describe '.full_text_search' do
       it { expect(model.full_text_search('test').to_a).to be_an_instance_of(Array) }
     end
+
+    describe '.boolean_full_text_search' do
+      it { expect(model.boolean_full_text_search('test').to_a).to be_an_instance_of(Array) }
+    end
   end
 end

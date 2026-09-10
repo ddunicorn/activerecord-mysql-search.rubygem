@@ -18,6 +18,10 @@ module MySQL
         scope :full_text_search, lambda { |search_term, search_column: :content|
           ::MySQL::Search::Queries::FullTextSearchQuery.new(self).call(search_term, search_column: search_column)
         }
+
+        scope :boolean_full_text_search, lambda { |search_term, search_column: :content|
+          ::MySQL::Search::Queries::BooleanFullTextSearchQuery.new(self).call(search_term, search_column: search_column)
+        }
       end
     end
   end
