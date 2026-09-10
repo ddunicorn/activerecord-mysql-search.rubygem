@@ -1,5 +1,10 @@
 ## [Unreleased]
 
+## [0.2.3] - 2026-09-11
+
+- Adds the `boolean_full_text_search` scope for MySQL boolean full-text queries
+- Adds integration coverage for required (`+`) and excluded (`-`) search terms
+
 ## [0.2.1] - 2026-07-15
 
 - Adds automatic loading of source classes on Rails startup via new `autoload_sources` configuration option (default: true)

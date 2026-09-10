@@ -121,6 +121,24 @@ This command populates the `search_indices` table with existing data from your m
 results = Article.full_text_search("Ruby on Rails")
 ```
 
+`full_text_search` uses MySQL's natural-language full-text search. Use
+`boolean_full_text_search` when you need operators such as `+` for required
+terms, `-` for excluded terms, or quotes and wildcards supported by MySQL's
+boolean full-text syntax:
+
+```ruby
+results = Article.boolean_full_text_search("+Ruby +Rails -legacy")
+```
+
+Both scopes support searching one or more search-index columns:
+
+```ruby
+results = Product.boolean_full_text_search(
+  "+Ruby +Rails",
+  search_column: %i[content seller_extra]
+)
+```
+
 **That’s it!** Users now get fast, scalable, and relevant search—no complex SQL, external services, or maintenance headaches.
 
 ## Advanced Scenarios: Multi-Column Search for Roles and Contexts
@@ -247,7 +265,7 @@ end
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update `spec.version` in `activerecord-mysql-search.gemspec`, commit the change, and then run `bundle exec rake release`. This creates a git tag for the version, pushes the commit and tag, and pushes the `.gem` file to [rubygems.org](https://rubygems.org).
 
 ## Contributing
 
